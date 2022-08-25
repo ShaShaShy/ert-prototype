@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+     <link rel="stylesheet" href="css/bootstrap.min.css">
+     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="css/aos.css">
+     <link rel="stylesheet" href="css/styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Courgette&family=Poppins:ital,wght@0,400;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/emergency-icon.png">
+	<title>REPORT FORM</title>
+</head>
+
+<body data-offset="50" onload="getLocation();">
+
+
+    <!-- MENU BAR -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+
+            <a class="navbar-brand" href="index.php">ERT ZAMBOANGA</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-lg-auto">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link smoothScroll">Home</a>
+                    </li>
+
+
+                </ul>
+
+                <ul class="social-icon ml-lg-3">
+                    <li><a href="https://fb.com/tooplate" class="fa fa-facebook"></a></li>
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav><br><br>
+
+         <!-- HERO -->
+     <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
+
+            <div class="bg-overlay"></div>
+
+               <div class="container">
+                    <div class="row">
+
+                         <div class="col-lg-8 col-md-10 mx-auto col-12">
+                              <div class="hero-text mt-5 text-center">
+<div class="myInput-1">
+
+	<h1 class="h1" style="color: darkorange;  letter-spacing: 5%;">REPORTING FORM</h1><br>
+<form class="myForm" action="report.php" method="POST" autocomplete="off" enctype="multipart/form-data">
+<div class="input-group mb-3">
+  <input type="text" name="fullname" class="form-control" placeholder="Full Name" aria-label="Username" aria-describedby="basic-addon1" style="color: #000000;" required>
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" name="address" class="form-control" placeholder="Address" aria-label="Username" aria-describedby="basic-addon1" style="color: #000000;" required>
+</div>
+
+<div class="input-group mb-3">
+  <input type="text" name="contact" class="form-control" placeholder="Contact" aria-label="Username" aria-describedby="basic-addon1" style="color: #000000;" required> 
+</div>
+
+<div class="mb-3">
+    <label>Please take a picture of the current situation and attach it below for us to verify your report.</label>
+  <input class="form-control" type="file" name="image" id="image" placeholder="Picture" required>
+</div>
+
+
+    <input type="hidden" name="latitude" value="">
+    <input type="hidden" name="longitude" value="">
+    <input type="hidden" name="td" value="
+    <?php
+     date_default_timezone_set('Asia/Manila');
+     $dt2=date("Y-m-d g:i:a");
+     echo $dt2; 
+ ?>
+
+<button type="submit" name="submit" class="btn btn-warning" >REPORT INCIDENT</button>
+</div><br><br>  
+</form>                                   
+                              </div>
+                         </div>
+
+                    </div>
+               </div>
+     </section>
+
+
+     <!-- SCRIPTS -->
+     <script src="js/jquery.min.js"></script>
+     <script src="js/bootstrap.min.js"></script>
+     <script src="js/aos.js"></script>
+     <script src="js/smoothscroll.js"></script>
+     <script src="js/custom.js"></script>
+
+    <script type="text/javascript">
+    function getLocation(){
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition(showPosition,showError);
+            enableHighAccuracy: true;
+        }
+    }   
+
+    function showPosition(position){
+        document.querySelector('.myForm input[name = "latitude"]').value = position.coords.latitude;
+        document.querySelector('.myForm input[name = "longitude"]').value = position.coords.longitude;
+    }
+    function showError(error){
+        switch(error.code){
+            case error.PERMISSION_DENIED:
+            alert("Please Turn on Your Location GPS First!");
+            location.reload();
+            break;
+        }
+    }
+    </script>
+
+</body>
+</html>
